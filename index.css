@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background: #1a191d;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    justify-content: space-evenly;
+    align-items: center;
+}
+.talent-row {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: white;
+    width: 90%;
+    height: 18%;
+
+}
+.talent-row .talent-choice{
+    background-color: grey;
+    border:4px solid black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 75%;
+
+}
+.talent-row .talent-choice .choice{
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+}
+/* .talent-row .talent-choice .choice:hover{
+    transform: scale(1.11);
+    border: 3px solid blue;
+    transition: transform 0.5s ease-in-out;
+    
+} */
+
+.talent-row .talent-choice .choice span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px; 
+    border: 2px solid green;
+    width: 95%;
+    height: 45%;
+}
