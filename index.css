@@ -5,17 +5,192 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
-body {
-    background: #1a191d;
+/* ------------------- hero ------------------------------ */
+.hero{
+    background-color: rgb(0, 0, 0);
+    background-position: center;
+    width: 100%;
     height: 100vh;
-    width: 100vw;
+}
+/* ---------- full-page game image container -------------- */
+#pageContainer {
+    width: 100%;
+    height: 100%;
+
+    background-image: url(images/gameboardBackground.png);
+    background-repeat: no-repeat;
+    background-size: 99%;
+    background-position: center;
+}
+/* ------------ Game screen container ------------------- */
+#screenContainer{
+    position: absolute;
+    width: 100%;
+    height: 56%;
+    transform: translateY(39.25%);
+    position: absolute;
+    display:flex;
+    justify-content: center;
+
+    border: 3px solid red;
+
+}
+/* ------------------- Actual Screen ------------------------------ */
+#screenContainer #screen{
+    position: absolute;
+    height: 100%;
+    width: 50%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-evenly;
+    justify-content: space-around;
+
+    border: 3px solid red;
+    background-image: url();
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* ------------------- Screen Top (thirst, hunger, happiness bars) ------------------------------ */
+#screen #screenTop{
+    height: 10%;
+    width: 98%;
+    display:flex;
     flex-wrap: wrap;
     flex-direction: row;
-
-    justify-content: space-evenly;
-    align-items: center;
+    align-content: space-around;
+    justify-content: space-around;
 }
+
+#screenTop .canvas1, #screenTop .canvas2, #screenTop .canvas3{
+    width: 32%;
+}
+/* ----------------- Screen Second Top ----------------------- */
+#screen #screenSecondTop{
+    width: 97%;
+    height: 10%;
+    color: white;
+    display: flex;
+    flex-wrap:wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-content: center;
+
+    border: 2px solid white;
+}
+/* ----------------- Screen Second Top (status banner -  fixed) ----------------------- */
+#screenSecondTop #statusBanner{
+    font-size: 14px;
+    color: white;
+    
+}
+/* ----------------- Screen Second Top (status banner - variable) ----------------------- */
+#screen #statusBanner #status{
+    margin-left: 10px;
+    width: 80%;
+    font-size: 13px;
+}
+/* ----------------- Screen Middle (image containers)----------------------- */
+#screen #screenMiddle{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-content: center;
+    height: 65%;
+    width: 97%;
+    border: 2px solid white;
+
+    background-image: url();
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+/* ----------------- Screen Middle (3 image container boxes) ----------------------- */
+#screenMiddle #screenLeft, #screenMiddle #screenCenter, #screenMiddle #screenRight {
+    height: 95%;
+    flex: 1 0 1;
+    width: 30%;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    transition: transform ease-in-out 200ms;
+    border: 2px solid white;
+}
+#screenMiddle #screenLeft{
+    background-image: url(images/background6.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+#screenMiddle #screenCenter{
+    background-image: url(images/background.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+}
+#screenMiddle #screenRight{
+    background-image: url(images/background5.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* ----------------- Screen Bottom ----------------------- */
+#screenBottom{
+    width: 97%;
+    align-self: center;
+    font-size: 15px;
+
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: space-evenly;
+    border: 2px solid white;
+}
+/* ----------------- Action Buttons ----------------------- */
+#screenBottom #foodPet, #screenBottom #drinkPet, #screenBottom #playPet{
+    width: 24%;
+    color: black;
+
+    border-radius: 25%;
+    transition: border-radius ease-in-out 0.4s;
+    cursor: pointer;
+}
+#screenBottom #foodPet{
+    border:2px solid green;
+}
+#screenBottom #drinkPet{
+    border:2px solid blue;
+}
+#screenBottom #playPet{
+    border: 2px solid red;
+}
+
+/* ----------------- Play again  ----------------------- */
+#confirmPet, #confirmPet1, #confirmPet2, #confirmPet3{
+    color: black;
+    font-size: 14px;
+    border-radius: 25%;
+    transition: border-radius ease-in-out 0.4s;
+    cursor: pointer;
+}
+/* ----------------- Play again  ----------------------- */
+#playAgain{
+    color: black;
+    margin-left: 20px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 25%;
+    transition: border-radius ease-in-out 0.4s;
+    cursor: pointer;
+}
+/* ----------------- action button Hover animations ----------------------- */
+#playAgain:hover, #foodPet:hover, #drinkPet:hover, #playPet:hover, #confirmPet:hover, #confirmPet1, #confirmPet2, #confirmPet3 {
+    border-radius: 50%;
+    background-color: lightgreen;
+}
+
 .talent-row {
     display: flex;
     justify-content: space-evenly;
@@ -62,3 +237,4 @@ body {
     width: 95%;
     height: 30%;
 }
+

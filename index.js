@@ -1,3 +1,14 @@
+// -------------------- button timer (2.5s) ----------------
+function lockoutButton(button) {
+	let oldValue = button.value;
+
+	button.setAttribute('disabled', true);
+	setTimeout(function(){
+		button.value = oldValue;
+		button.removeAttribute('disabled');
+		button.style.borderColor = "white";
+	}, 3000);
+};
 
 class Character {
     constructor(Health, Stamina, Mana, Attack, Defense, Speed){
