@@ -107,7 +107,7 @@
     background-repeat: no-repeat;
 }
 /* ----------------- Screen Middle (3 image container boxes) ----------------------- */
-#screenMiddle #screenLeft, #screenMiddle #screenCenter, #screenMiddle #screenRight {
+#screenMiddle #screenLeft, #screenMiddle #screenCenter, #screenMiddle #screenRight{
     height: 95%;
     flex: 1 0 1;
     width: 30%;
@@ -116,6 +116,20 @@
     align-content: center;
     transition: transform ease-in-out 200ms;
     border: 2px solid white;
+}
+#screenMiddle #screenRightMenu{
+    height: 95%;
+    flex: 1 0 1;
+    width: 30%;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+    transition: transform ease-in-out 200ms;
+    border: 2px solid white;
+    background-color: white;
+    /* background-image: url(images/menuBackground.png);
+    background-size: cover;
+    background-color: none; */
 }
 #screenMiddle #screenLeft{
     background-image: url(images/background6.gif);
@@ -136,6 +150,7 @@
     background-size: cover;
     background-position: center;
 }
+
 /* ----------------- Screen Bottom ----------------------- */
 #screenBottom{
     width: 97%;

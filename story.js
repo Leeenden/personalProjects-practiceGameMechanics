@@ -5,6 +5,7 @@ const screenMiddle = document.getElementById("screenMiddle");
 const screenCenter = document.getElementById("screenCenter");
 const leftScreen = document.getElementById("screenLeft");
 const screenRight = document.getElementById("screenRight");
+const screenRightMenu = document.getElementById("screenRightMenu");
 
 // -------------------- Audio file variables --------------------------
 // const diceAudio = new Audio("diceroll.mp3");
@@ -43,7 +44,6 @@ class PetChoice {
 }; 
 // ------------------- pet objects ------------------------
 const petChoice1 = new PetChoice(1, "Extra-terresti-Cat", "an unknown location", "an earie green glow", "like petrol", "sleeping in moon craters");
-petChoice1.introduceSelf();
 const petChoice2 = new PetChoice(2, "Princess Cat", "the kitty kingdom", "an adorable candy pink", "cotton candy", "being pampered");
 const petChoice3 = new PetChoice(3, "Wild Cat", "the great wildlands", "a brown and spotted", "like it hasn't had a wash", "to explore");
 // ------------------- pet selection sequence------------------------
@@ -56,6 +56,7 @@ confirmPet.style.display = "none";
 drinkPet.style.display = "none";
 foodPet.style.display = "none";
 playPet.style.display = "none";
+screenRightMenu.style.display = "none";
 
 myChoice = 0;
 confirmPet1.addEventListener("click", function(){
@@ -152,12 +153,12 @@ confirmPet.addEventListener("click", function(){
 
 document.addEventListener("keypress", (e) => {
     if (e.key === "m" || e.key === "M") {
-		leftScreen.style.width = "60%";
-        screenCenter.style.display ="";
+        leftScreen.style.width = "60%"
+        screenRightMenu.style.display ="";
 	};
 });
 document.addEventListener("keyup", (e) => {
 	leftScreen.style.width = "100%";
-    screenCenter.style.display ="none";
+    screenRightMenu.style.display ="none";
 	
 });
