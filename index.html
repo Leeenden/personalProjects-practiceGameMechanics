@@ -8,10 +8,15 @@
     <title> Animated Footer animation </title>
 </head>
 <body>
-    <div class = "hero">
+    <div id = "interface">
+        <div id = "leftSide">
+
+        </div>
         <div id = "screenContainer">
             <div id = "screen">
-                <div id = "screenTop">
+                <canvas id = "gameMap">
+                </canvas>
+                <!-- <div id = "screenTop">
                     <canvas class = "canvas1"> </canvas>
                     <canvas class = "canvas2"> </canvas>
                     <canvas class = "canvas3"> </canvas>
@@ -26,25 +31,33 @@
                         <canvas class = "canvasPet1"> </canvas>
                         <canvas class = "canvasPet2"> </canvas>
                     </div>
+                </div> -->
+            </div>
+        </div>
+        <div id = "rightSide">
+            <label>
+                <input type = "checkbox">
+                <span></span>
+                <i class= "indicator"></i>
+            </label>
+        </div>
+        <div id="buttonDashboard">
+            <div id = "dashboardLeft">
+                <div id = "arrowButtons">
+                    
                 </div>
-                <div id = "screenBottom">
-                    <button id = "foodPet"> Food </button>
-                    <button id = "playPet"> Play </button>
-                    <button id = "drinkPet"> Water </button>
-                    <!-- <button id = "playAgain"> Play Again? </button>
-                    <button id = "confirmPet1"> Cat 1 </button>
-                    <button id = "confirmPet2"> Cat 2 </button>
-                    <button id = "confirmPet3"> Cat 3 </button> -->
-                    <!-- <button id = "confirmPet"> confirmPet </button> -->
-                    <label>
-                        <input type = "checkbox">
-                        <span></span>
-                        <i class= "indicator"></i>
-                    </label>
-                </div>
+            </div>
+            <div id= "dashboardMiddle">
+                <button id = "select"><ion-icon name="information-circle-outline"></ion-icon> Select </button>
+            <button id = "home"><ion-icon name="home"></ion-icon> Home </button>
+            <button id = "start"><ion-icon name="power"></ion-icon> Start </button>
+            </div>
+            <div id = "dashboardRight">
+
             </div>
         </div>
     </div>
+    
 
     <!-- <div class= "talent-row">
         <div class="talent-choice">
@@ -142,8 +155,9 @@
             </div>
         </div>
     </div> -->
-    <script src="spirites.js"></script>
-    <script src="items.js"></script>
+    <!-- <script src="items.js"></script> -->
     <script src="index.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
