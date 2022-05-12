@@ -217,7 +217,7 @@ function animate() {
                         ...boundary, 
                         position: {
                             x: boundary.position.x,
-                            y: boundary.position.y + 3
+                            y: boundary.position.y - 3
                         }
                     }
                 })
@@ -241,8 +241,8 @@ function animate() {
                     rectangle2: {
                         ...boundary, 
                         position: {
-                            x: boundary.position.x,
-                            y: boundary.position.y + 3
+                            x: boundary.position.x - 3,
+                            y: boundary.position.y 
                         }
                     }
                 })
