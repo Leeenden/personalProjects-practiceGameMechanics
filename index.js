@@ -3,11 +3,49 @@ const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
 
 // canvas height and width
-
 canvas.width = 840;
 canvas.height = 480;
-c.fillRect(0, 0, canvas.width, canvas.height);
 
+const collisionsMap = [];
+
+//parse JSON file to produce arrays of the array
+for (let i = 0; i < collisions.length; i += 70){
+   collisionsMap.push(collisions.slice(i, 70 + i))
+}
+
+// define booundaries class
+class Boundary {
+    constructor({position}) {
+        this.position = position,
+        this.width = 64,
+        this.height = 64
+    }
+
+    draw() {
+        c.fillStyle = "red"
+        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+    }
+};
+
+// booundaries array for pushing boundary  
+const boundaries = [];
+
+collisionsMap.forEach((row, i) => {
+    row.forEach((symbol, j) => {
+        boundaries.push(
+            new Boundary({
+                position: {
+                    x: 0,
+                    y: 0
+                }
+            })
+        )
+    })
+})
+
+
+
+// define canvas images 
 const image = new Image();
 image.src = "./images/map.png";
 
