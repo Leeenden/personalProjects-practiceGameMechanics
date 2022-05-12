@@ -63,10 +63,18 @@ playerImage.src = "images/char.png";
 
 // class definining
 class Sprite {
-    constructor({ position, velocity, image, frames = {max: 1}}) { 
+    constructor({ position, velocity, image, frames = {col: 1, row: 1}}) { 
         this.position = position
         this.image = image
         this.frames = frames
+
+        this.image.onload = () => {
+            this.width = this.image.width / this.frames.col
+            this.height = this.image.height / this.frames.row
+            console.log(this.width)
+            console.log(this.height)
+        }
+        
     }
 
     draw() {
@@ -74,12 +82,12 @@ class Sprite {
             this.image,
             0,
             0,
-            this.image.width / this.frames.max,
-            this.image.height,
+            this.image.width / this.frames.col,
+            this.image.height / this.frames.row,
             this.position.x,
             this.position.y,
-            this.image.width / this.frames.max,
-            this.image.height
+            this.image.width / this.frames.col,
+            this.image.height / this.frames.row
         )
     } 
 }
@@ -88,10 +96,14 @@ class Sprite {
 // player
 const player = new Sprite({
     position: {
-        x: canvas.width / 2 - 384 / 4 / 2,
-        y: canvas.height / 2 
+        x: canvas.width / 2 - 128 / 4,
+        y: canvas.height / 2 - 384 / 8 
     },
-    image: playerImage
+    image: playerImage,
+    frames: {
+        col: 4,
+        row: 8
+    }
 })
 // background
 
@@ -139,8 +151,11 @@ function animate() {
     //     Boundary.draw()
     // });
     testBoundary.draw()
+    player.draw();
 
-    // if (playerImage.position.x + playerImage.width)
+    if (player.position.x + player.width >= testBoundary.position.x){
+        console.log("coliding")
+    }
 
     if (keys.w.pressed && lastKey === "w") {
         moveables.forEach((movable) => {
@@ -156,7 +171,7 @@ function animate() {
         })
     } else if (keys.d.pressed && lastKey === "d") {
         moveables.forEach((movable) => {
-            movable.position.x += 3
+            movable.position.x -= 3
         })
     }
 }
