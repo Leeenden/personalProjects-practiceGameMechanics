@@ -177,20 +177,83 @@ function animate() {
                 break
             }
         }
-        
+        // stop movement 
         if(moving)
             moveables.forEach((movable) => {
                 movable.position.y += 3
-            })
+        })
     } else if (keys.a.pressed && lastKey === "a") {
+        for (let i = 0; i < boundaries.length; i++){
+            const boundary = boundaries[i]
+            if (
+                rectanglularCollision({
+                    rectangle1: player, 
+                    rectangle2: {
+                        ...boundary, 
+                        position: {
+                            x: boundary.position.x + 3,
+                            y: boundary.position.y
+                        }
+                    }
+                })
+            ) {
+                console.log("colliding")
+                moving = false 
+                break
+            }
+        }
+        // stop movement 
+        if(moving)
         moveables.forEach((movable) => {
             movable.position.x += 3
         })
     } else if (keys.s.pressed && lastKey === "s") {
+        for (let i = 0; i < boundaries.length; i++){
+            const boundary = boundaries[i]
+            if (
+                rectanglularCollision({
+                    rectangle1: player, 
+                    rectangle2: {
+                        ...boundary, 
+                        position: {
+                            x: boundary.position.x,
+                            y: boundary.position.y + 3
+                        }
+                    }
+                })
+            ) {
+                console.log("colliding")
+                moving = false 
+                break
+            }
+        }
+        // stop movement 
+        if(moving)
         moveables.forEach((movable) => {
             movable.position.y -= 3
         })
     } else if (keys.d.pressed && lastKey === "d") {
+        for (let i = 0; i < boundaries.length; i++){
+            const boundary = boundaries[i]
+            if (
+                rectanglularCollision({
+                    rectangle1: player, 
+                    rectangle2: {
+                        ...boundary, 
+                        position: {
+                            x: boundary.position.x,
+                            y: boundary.position.y + 3
+                        }
+                    }
+                })
+            ) {
+                console.log("colliding")
+                moving = false 
+                break
+            }
+        }
+        // stop movement 
+        if(moving)
         moveables.forEach((movable) => {
             movable.position.x -= 3
         })
