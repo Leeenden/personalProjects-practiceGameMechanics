@@ -15,9 +15,12 @@ for (let i = 0; i < collisions.length; i += 70){
 
 // define booundaries class
 class Boundary {
+    // static property for zoomed in map image (16px actual x 4 zoom)
+    static width = 64
+    static height = 64
     constructor({position}) {
-        this.position = position,
-        this.width = 64,
+        this.position = position
+        this.width = 64
         this.height = 64
     }
 
@@ -29,25 +32,31 @@ class Boundary {
 
 // booundaries array for pushing boundary  
 const boundaries = [];
+const offset = {
+    x: -2475,
+    y: -1400
+}
 
 collisionsMap.forEach((row, i) => {
     row.forEach((symbol, j) => {
-        boundaries.push(
-            new Boundary({
-                position: {
-                    x: 0,
-                    y: 0
-                }
-            })
-        )
-    })
-})
+        if (symbol === 1144)
+            boundaries.push(
+                new Boundary({
+                    position: {
+                        x: j * Boundary.width + offset.x,
+                        y: i * Boundary.height + offset.y
+                    }
+                })
+            );
 
+    });
+});
 
+console.log(boundaries);
 
 // define canvas images 
 const image = new Image();
-image.src = "./images/map.png";
+image.src = "images/map.png";
 
 const playerImage = new Image();
 playerImage.src = "images/char.png";
@@ -64,10 +73,12 @@ class Sprite {
     }
 }
 
+
+
 const background = new Sprite({
     position: {
-        x: -2475, 
-        y: -1400
+        x: offset.x, 
+        y: offset.y
     },
     image: image
 })
@@ -87,12 +98,26 @@ const keys = {
         pressed: false
     }
 }
+// test boundary 
+const testBoundary = new Boundary({
+    position: {
+        x: 400, 
+        y: 400
+    }
+})
+
+// moveables 
+const moveables = [background, testBoundary]
 
 // animate function 
 function animate() {
+    window.requestAnimationFrame(animate);
     //draw game map
     background.draw();
-    window.requestAnimationFrame(animate);
+    // boundaries.forEach(Boundary => {
+    //     Boundary.draw()
+    // });
+    testBoundary.draw()
     c.drawImage(
         playerImage,
         0,
@@ -105,13 +130,26 @@ function animate() {
         playerImage.height / 8
     );
 
-    if (keys.w.pressed && lastKey === "w") background.position.y += 3
-    else if (keys.a.pressed && lastKey === "a") background.position.x += 3
-    else if (keys.s.pressed && lastKey === "s") background.position.y -= 3
-    else if (keys.d.pressed && lastKey === "d") background.position.x -= 3
+    if (keys.w.pressed && lastKey === "w") {
+        moveables.forEach((movable) => {
+            movable.position.y += 3
+        })
+    } else if (keys.a.pressed && lastKey === "a") {
+        moveables.forEach((movable) => {
+            movable.position.x += 3
+        })
+    } else if (keys.s.pressed && lastKey === "s") {
+        moveables.forEach((movable) => {
+            movable.position.y -= 3
+        })
+    } else if (keys.d.pressed && lastKey === "d") {
+        moveables.forEach((movable) => {
+            movable.position.x += 3
+        })
+    }
 }
 
-animate()
+animate();
 
 // key up event listeners
 let lastKey= ""
