@@ -33,8 +33,8 @@ class Boundary {
 // booundaries array for pushing boundary  
 const boundaries = [];
 const offset = {
-    x: -2475,
-    y: -1400
+    x: -2508,
+    y: -1435
 }
 
 collisionsMap.forEach((row, i) => {
@@ -131,36 +131,57 @@ const keys = {
         pressed: false
     }
 }
-// test boundary 
-const testBoundary = new Boundary({
-    position: {
-        x: 400, 
-        y: 400
-    }
-})
 
 // moveables 
-const moveables = [background, testBoundary]
+const moveables = [background, ...boundaries]
 
+function rectanglularCollision({rectangle1, rectangle2}) {
+    return (
+    rectangle1.position.x + rectangle1.width >= rectangle2.position.x && 
+    rectangle1.position.x <= rectangle2.position.x + rectangle2.width &&
+    rectangle1.position.y <= rectangle2.position.y + rectangle2.height &&
+    rectangle1.position.y + rectangle1.height >= rectangle2.position.y
+    )
+}
 // animate function 
 function animate() {
     window.requestAnimationFrame(animate);
     //draw game map
     background.draw();
-    // boundaries.forEach(Boundary => {
-    //     Boundary.draw()
-    // });
-    testBoundary.draw()
+    boundaries.forEach((boundary) => {
+        boundary.draw()
+        // collision detection
+        
+    });
     player.draw();
 
-    if (player.position.x + player.width >= testBoundary.position.x){
-        console.log("coliding")
-    }
-
+    // movment tracking
+    let moving = true;
     if (keys.w.pressed && lastKey === "w") {
-        moveables.forEach((movable) => {
-            movable.position.y += 3
-        })
+        for (let i = 0; i < boundaries.length; i++){
+            const boundary = boundaries[i]
+            if (
+                rectanglularCollision({
+                    rectangle1: player, 
+                    rectangle2: {
+                        ...boundary, 
+                        position: {
+                            x: boundary.position.x,
+                            y: boundary.position.y + 3
+                        }
+                    }
+                })
+            ) {
+                console.log("colliding")
+                moving = false 
+                break
+            }
+        }
+        
+        if(moving)
+            moveables.forEach((movable) => {
+                movable.position.y += 3
+            })
     } else if (keys.a.pressed && lastKey === "a") {
         moveables.forEach((movable) => {
             movable.position.x += 3
