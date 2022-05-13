@@ -38,13 +38,16 @@ collisionsMap.forEach((row, i) => {
 
 console.log(boundaries);
 
-// define canvas images 
+// define canvas images
+//map
 const image = new Image();
 image.src = "images/map.png";
 
+const foregroundImage = new Image();
+foregroundImage.src = "images/foregroundObjects.png"
+// player
 const playerImage = new Image();
 playerImage.src = "images/char.png";
-
 
 
 // creating class objects
@@ -61,7 +64,6 @@ const player = new Sprite({
     }
 })
 // background
-
 const background = new Sprite({
     position: {
         x: offset.x, 
@@ -69,13 +71,13 @@ const background = new Sprite({
     },
     image: image
 })
-
+// foreground
 const foreground = new Sprite({
     position: {
         x: offset.x, 
         y: offset.y
     },
-    image: image
+    image: foregroundImage
 })
 
 // keys object
@@ -95,7 +97,7 @@ const keys = {
 }
 
 // moveables 
-const moveables = [background, ...boundaries]
+const moveables = [background, ...boundaries, foreground]
 
 function rectanglularCollision({rectangle1, rectangle2}) {
     return (
@@ -116,6 +118,7 @@ function animate() {
         
     });
     player.draw();
+    foreground.draw();
 
     // movment tracking
     let moving = true;
