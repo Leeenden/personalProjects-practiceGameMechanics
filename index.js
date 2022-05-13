@@ -190,9 +190,11 @@ function animate() {
                 && Math.random() < 0.01
             ) {
                 console.log("battle activated")
+
                 // deactivate current animation loop
                 window.cancelAnimationFrame(animationId)
                 battle.initiated = true
+
                 // gsap libaray animation settings
                 gsap.to("#battleFlash", {
                     opacity: 1, 
@@ -203,11 +205,18 @@ function animate() {
                     onComplete() {
                         gsap.to("#battleFlash", {
                             opacity: 1,
-                            duration: 0.4
+                            duration: 0.4, 
+                            onComplete() {
+                                // activate new animation loop only when animation is complete
+                                animateBattle();
+                                gsap.to("#battleFlash", {
+                                    opacity: 0,
+                                    duration: 0.4
+                                })
+                            }
                         })
 
-                        // activate new animation loop
-
+                        
                     }
                 })
                 break
@@ -328,8 +337,29 @@ function animate() {
         })
     }
 }
+// calling animation functions
 
-animate();
+// animate();
+
+// declare battle image 
+const battleBackgroundImage = new Image();
+battleBackgroundImage.src = "images/bg-forest1.png";
+
+// battle sprite object
+const battleBackground = new Sprite({
+    position: {
+        x: 0,
+        y: 0
+    },
+    image: battleBackgroundImage
+})
+
+function animateBattle() {
+    window.requestAnimationFrame(animateBattle);
+    battleBackground.draw();
+}
+
+animateBattle();
 
 // key up event listeners
 let lastKey= ""
