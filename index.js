@@ -142,7 +142,7 @@ const battle = {
 
 // animate function 
 function animate() {
-    window.requestAnimationFrame(animate);
+    const animationId = window.requestAnimationFrame(animate);
     //draw game map
     background.draw();
     boundaries.forEach((boundary) => {
@@ -163,6 +163,7 @@ function animate() {
     player.moving = false;
 
     // stopping movement on battle
+    console.log(animationId)
     if (battle.initiated) return
 
     // battlezone collisions detection / battle activation
@@ -189,17 +190,24 @@ function animate() {
                 && Math.random() < 0.01
             ) {
                 console.log("battle activated")
+                // deactivate current animation loop
+                window.cancelAnimationFrame(animationId)
                 battle.initiated = true
+                // gsap libaray animation settings
                 gsap.to("#battleFlash", {
                     opacity: 1, 
                     repeat: 3,
                     yoyo: true,
                     duration: 0.4,
+                    // show battle screen at the end of animation
                     onComplete() {
                         gsap.to("#battleFlash", {
                             opacity: 1,
                             duration: 0.4
                         })
+
+                        // activate new animation loop
+
                     }
                 })
                 break
