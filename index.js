@@ -160,7 +160,7 @@ function animate() {
 
     // movment tracking
     let moving = true;
-    player.moving = false;
+    player.animate = false;
 
     // stopping movement on battle
     console.log(animationId)
@@ -227,7 +227,7 @@ function animate() {
     // w key function
     if (keys.w.pressed && lastKey === "w") {
         player.frames.rowVal = 3
-        player.moving = true
+        player.animate = true
         //boundary collisions
         for (let i = 0; i < boundaries.length; i++){
             const boundary = boundaries[i]
@@ -256,7 +256,7 @@ function animate() {
 
     } else if (keys.a.pressed && lastKey === "a") {
         player.frames.rowVal = 1
-        player.moving = true
+        player.animate = true
         for (let i = 0; i < boundaries.length; i++){
             const boundary = boundaries[i]
             if (
@@ -283,7 +283,7 @@ function animate() {
         })
     } else if (keys.s.pressed && lastKey === "s") {
         player.frames.rowVal = 0
-        player.moving = true
+        player.animate = true
         for (let i = 0; i < boundaries.length; i++){
             const boundary = boundaries[i]
             if (
@@ -310,7 +310,7 @@ function animate() {
         })
     } else if (keys.d.pressed && lastKey === "d") {
         player.frames.rowVal = 2
-        player.moving = true
+        player.animate = true
         for (let i = 0; i < boundaries.length; i++){
             const boundary = boundaries[i]
             if (
@@ -354,9 +354,26 @@ const battleBackground = new Sprite({
     image: battleBackgroundImage
 })
 
+// monster sprites
+const brainyImage = new Image();
+brainyImage.src = "images/brainResized.png";
+const brainy = new Sprite({
+    position: {
+        x: 700,
+        y: 100
+    },
+    image: brainyImage,
+    frames: {
+        col: 8,
+        row: 5
+    },
+    animate: true
+})
+
 function animateBattle() {
     window.requestAnimationFrame(animateBattle);
     battleBackground.draw();
+    brainy.draw();
 }
 
 animateBattle();

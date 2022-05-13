@@ -1,6 +1,6 @@
 // class definining
 class Sprite {
-    constructor({ position, image, frames = {col: 1, row: 1}}) { 
+    constructor({ position, image, frames = {col: 1, row: 1}, animate = false}) { 
         this.position = position
         this.image = image
         this.frames = {...frames, colVal: 0, rowVal: 0, elapsed: 0}
@@ -11,11 +11,8 @@ class Sprite {
             // console.log(this.width)
             // console.log(this.height)
         }
-        this.moving = false
+        this.animate = animate
     }
-
-    
-
     draw() {
         c.drawImage(
             this.image,
@@ -28,7 +25,8 @@ class Sprite {
             this.image.width / this.frames.col,
             this.image.height / this.frames.row
         )
-        if (!this.moving) return
+        if (!this.animate) return
+
         if (this.frames.col > 1){
             this.frames.elapsed++
         }
