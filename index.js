@@ -155,18 +155,29 @@ function animate() {
         // loop through array
         for (let i = 0; i < battleZones.length; i++){
             const battleZone = battleZones[i]
+            const overlappingArea = 
+                (Math.min(
+                    player.position.x + player.width, 
+                    battleZone.position.x + battleZone.width
+                ) - 
+                    Math.max(player.position.x, battleZone.position.x)) * 
+                (Math.min(
+                    player.position.y + player.height, 
+                    battleZone.position.y + battleZone.height
+                ) - Math.max(player.position.y, battleZone.position.y))
             if (
                 rectanglularCollision({
                     rectangle1: player, 
                     rectangle2: battleZone
-                })
+                }) &&
+                overlappingArea > (player.width * player.height) / 2
+                && Math.random() < 0.01
             ) {
                 console.log("collision in battle zone")
                 break
             }
         }
     }
-
     // movment tracking
     let moving = true;
     player.moving = false
@@ -307,7 +318,7 @@ window.addEventListener("keydown", (e) => {
             lastKey = "d"
             break
     }
-    console.log(keys)
+    // console.log(keys)
 });
 // key up event listeners
 window.addEventListener("keyup", (e) => {
@@ -325,5 +336,5 @@ window.addEventListener("keyup", (e) => {
             keys.d.pressed = false
             break
     }
-    console.log(keys)
+    // console.log(keys)
 });
