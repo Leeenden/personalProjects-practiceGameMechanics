@@ -8,8 +8,8 @@ class Sprite {
         this.image.onload = () => {
             this.width = this.image.width / this.frames.col
             this.height = this.image.height / this.frames.row
-            console.log(this.width)
-            console.log(this.height)
+            // console.log(this.width)
+            // console.log(this.height)
         }
         this.moving = false
     }
@@ -51,7 +51,7 @@ class Boundary {
     }
 
     draw() {
-        c.fillStyle = "rgba(255, 0, 0, 0)"
+        c.fillStyle = "rgba(255, 0, 0, 0.4)"
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 };

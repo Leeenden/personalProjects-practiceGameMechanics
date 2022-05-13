@@ -1,6 +1,7 @@
 // canvas DOM and context
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
+console.log(battleZonesData);
 
 // canvas height and width
 canvas.width = 840;
@@ -8,10 +9,16 @@ canvas.height = 480;
 
 const collisionsMap = [];
 
-//parse JSON file to produce arrays of the array
+//parse JSON file to produce arrays of the array for collisions
 for (let i = 0; i < collisions.length; i += 70){
    collisionsMap.push(collisions.slice(i, 70 + i))
 }
+const battleZonesMap = [];
+//parse JSON file to produce arrays of the array for battleZones
+for (let i = 0; i < battleZonesData.length; i += 70){
+    battleZonesMap.push(battleZonesData.slice(i, 70 + i))
+}
+console.log(battleZonesMap)
 
 
 // booundaries array for pushing boundary  
@@ -36,7 +43,25 @@ collisionsMap.forEach((row, i) => {
     });
 });
 
-console.log(boundaries);
+const battleZones = [];
+
+battleZonesMap.forEach((row, i) => {
+    row.forEach((symbol, j) => {
+        if (symbol === 1020)
+            battleZones.push(
+                new Boundary({
+                    position: {
+                        x: j * Boundary.width + offset.x,
+                        y: i * Boundary.height + offset.y
+                    }
+                })
+            );
+
+    });
+});
+
+console.log(battleZones)
+// console.log(boundaries);
 
 // define canvas images
 //map
@@ -97,7 +122,7 @@ const keys = {
 }
 
 // moveables 
-const moveables = [background, ...boundaries, foreground]
+const moveables = [background, ...boundaries, foreground, ...battleZones]
 
 function rectanglularCollision({rectangle1, rectangle2}) {
     return (
@@ -117,16 +142,39 @@ function animate() {
         // collision detection
         
     });
+    battleZones.forEach((battleZone) => {
+        battleZone.draw()
+        // collision detection
+        
+    });
     player.draw();
     foreground.draw();
+
+    // battlezone collisions detection
+    if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+        // loop through array
+        for (let i = 0; i < battleZones.length; i++){
+            const battleZone = battleZones[i]
+            if (
+                rectanglularCollision({
+                    rectangle1: player, 
+                    rectangle2: battleZone
+                })
+            ) {
+                console.log("collision in battle zone")
+                break
+            }
+        }
+    }
 
     // movment tracking
     let moving = true;
     player.moving = false
-    
+    // w key function
     if (keys.w.pressed && lastKey === "w") {
         player.frames.rowVal = 3
         player.moving = true
+        //boundary collisions
         for (let i = 0; i < boundaries.length; i++){
             const boundary = boundaries[i]
             if (
@@ -151,6 +199,7 @@ function animate() {
             moveables.forEach((movable) => {
                 movable.position.y += 3
         })
+
     } else if (keys.a.pressed && lastKey === "a") {
         player.frames.rowVal = 1
         player.moving = true
