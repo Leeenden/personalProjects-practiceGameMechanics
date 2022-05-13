@@ -1,7 +1,9 @@
 // canvas DOM and context
 const canvas = document.querySelector("canvas");
 const c = canvas.getContext("2d");
-console.log(battleZonesData);
+console.log(gsap);
+
+
 
 // canvas height and width
 canvas.width = 840;
@@ -188,6 +190,18 @@ function animate() {
             ) {
                 console.log("battle activated")
                 battle.initiated = true
+                gsap.to("#battleFlash", {
+                    opacity: 1, 
+                    repeat: 3,
+                    yoyo: true,
+                    duration: 0.4,
+                    onComplete() {
+                        gsap.to("#battleFlash", {
+                            opacity: 1,
+                            duration: 0.4
+                        })
+                    }
+                })
                 break
             }
         }
