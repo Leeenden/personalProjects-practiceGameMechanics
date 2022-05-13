@@ -3,7 +3,7 @@ class Sprite {
     constructor({ position, image, frames = {col: 1, row: 1}}) { 
         this.position = position
         this.image = image
-        this.frames = frames
+        this.frames = {...frames, colVal: 0}
 
         this.image.onload = () => {
             this.width = this.image.width / this.frames.col
@@ -17,7 +17,7 @@ class Sprite {
     draw() {
         c.drawImage(
             this.image,
-            0,
+            this.frames.colVal * this.width,
             0,
             this.image.width / this.frames.col,
             this.image.height / this.frames.row,
@@ -26,6 +26,8 @@ class Sprite {
             this.image.width / this.frames.col,
             this.image.height / this.frames.row
         )
+        if (this.frames.colVal < this.frames.col - 1) this.frames.colVal++
+        else this.frames.colVal = 0
     } 
 }
 
