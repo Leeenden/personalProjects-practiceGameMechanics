@@ -3,7 +3,7 @@ class Sprite {
     constructor({ position, image, frames = {col: 1, row: 1}}) { 
         this.position = position
         this.image = image
-        this.frames = {...frames, colVal: 0, elapsed: 0}
+        this.frames = {...frames, colVal: 0, rowVal: 0, elapsed: 0}
 
         this.image.onload = () => {
             this.width = this.image.width / this.frames.col
@@ -20,7 +20,7 @@ class Sprite {
         c.drawImage(
             this.image,
             this.frames.colVal * this.width,
-            0,
+            this.frames.rowVal * this.height,
             this.image.width / this.frames.col,
             this.image.height / this.frames.row,
             this.position.x,

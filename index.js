@@ -122,8 +122,10 @@ function animate() {
 
     // movment tracking
     let moving = true;
-    player.moving = false 
+    player.moving = false
+    
     if (keys.w.pressed && lastKey === "w") {
+        player.frames.rowVal = 3
         player.moving = true
         for (let i = 0; i < boundaries.length; i++){
             const boundary = boundaries[i]
@@ -150,6 +152,7 @@ function animate() {
                 movable.position.y += 3
         })
     } else if (keys.a.pressed && lastKey === "a") {
+        player.frames.rowVal = 1
         player.moving = true
         for (let i = 0; i < boundaries.length; i++){
             const boundary = boundaries[i]
@@ -176,6 +179,7 @@ function animate() {
             movable.position.x += 3
         })
     } else if (keys.s.pressed && lastKey === "s") {
+        player.frames.rowVal = 0
         player.moving = true
         for (let i = 0; i < boundaries.length; i++){
             const boundary = boundaries[i]
@@ -202,6 +206,7 @@ function animate() {
             movable.position.y -= 3
         })
     } else if (keys.d.pressed && lastKey === "d") {
+        player.frames.rowVal = 2
         player.moving = true
         for (let i = 0; i < boundaries.length; i++){
             const boundary = boundaries[i]
