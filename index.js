@@ -132,6 +132,12 @@ function rectanglularCollision({rectangle1, rectangle2}) {
     rectangle1.position.y + rectangle1.height >= rectangle2.position.y
     )
 }
+// battle initiations
+const battle = {
+    initiated: false 
+}
+
+
 // animate function 
 function animate() {
     window.requestAnimationFrame(animate);
@@ -150,7 +156,14 @@ function animate() {
     player.draw();
     foreground.draw();
 
-    // battlezone collisions detection
+    // movment tracking
+    let moving = true;
+    player.moving = false;
+
+    // stopping movement on battle
+    if (battle.initiated) return
+
+    // battlezone collisions detection / battle activation
     if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
         // loop through array
         for (let i = 0; i < battleZones.length; i++){
@@ -173,14 +186,13 @@ function animate() {
                 overlappingArea > (player.width * player.height) / 2
                 && Math.random() < 0.01
             ) {
-                console.log("collision in battle zone")
+                console.log("battle activated")
+                battle.initiated = true
                 break
             }
         }
     }
-    // movment tracking
-    let moving = true;
-    player.moving = false
+    
     // w key function
     if (keys.w.pressed && lastKey === "w") {
         player.frames.rowVal = 3

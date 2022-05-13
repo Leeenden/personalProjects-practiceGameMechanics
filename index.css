@@ -57,11 +57,18 @@
     flex-wrap: wrap;
     align-content: space-evenly;
     justify-content: space-around;
-
-    border-radius: 40px;
 }
 #canvas {
     border-radius: 40px;
+}
+#battleFlash {
+    position: absolute;
+    top: 4.5%;
+    width: 840px;
+    height: 482px;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
 }
 /* --------------- Screen Top (thirst, hunger, happiness bars) ------------------------------  */
 #screen #screenTop{
