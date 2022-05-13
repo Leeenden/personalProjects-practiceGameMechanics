@@ -87,8 +87,10 @@ const player = new Sprite({
     image: playerImage,
     frames: {
         col: 4,
-        row: 8
-    }
+        row: 8,
+        hold: 10
+    },
+    animate: true
 })
 // background
 const background = new Sprite({
@@ -359,15 +361,17 @@ const brainyImage = new Image();
 brainyImage.src = "images/brainResized.png";
 const brainy = new Sprite({
     position: {
-        x: 700,
+        x: 550,
         y: 100
     },
     image: brainyImage,
     frames: {
         col: 8,
-        row: 5
+        row: 5,
+        hold: 10
     },
     animate: true
+    
 })
 
 function animateBattle() {

@@ -1,6 +1,6 @@
 // class definining
 class Sprite {
-    constructor({ position, image, frames = {col: 1, row: 1}, animate = false}) { 
+    constructor({ position, image, frames = {col: 1, row: 1, hold: 10}, animate = false}) { 
         this.position = position
         this.image = image
         this.frames = {...frames, colVal: 0, rowVal: 0, elapsed: 0}
@@ -30,7 +30,7 @@ class Sprite {
         if (this.frames.col > 1){
             this.frames.elapsed++
         }
-        if (this.frames.elapsed % 10 === 0) {
+        if (this.frames.elapsed % this.frames.hold === 0) {
             if (this.frames.colVal < this.frames.col - 1) this.frames.colVal++
             else this.frames.colVal = 0
         }
