@@ -343,6 +343,7 @@ function animate() {
 
 animate();
 
+
 // declare battle image 
 const battleBackgroundImage = new Image();
 battleBackgroundImage.src = "images/bg-forest1.png";
