@@ -341,7 +341,7 @@ function animate() {
 }
 // calling animation functions
 
-// animate();
+animate();
 
 // declare battle image 
 const battleBackgroundImage = new Image();
@@ -380,7 +380,7 @@ function animateBattle() {
     brainy.draw();
 }
 
-animateBattle();
+// animateBattle();
 
 // key up event listeners
 let lastKey= ""
