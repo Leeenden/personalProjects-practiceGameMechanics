@@ -340,9 +340,8 @@ function animate() {
     }
 }
 // calling animation functions
-
+//  should be on
 animate();
-
 
 // declare battle image 
 const battleBackgroundImage = new Image();
@@ -381,6 +380,7 @@ function animateBattle() {
     brainy.draw();
 }
 
+// should be off 
 // animateBattle();
 
 // key up event listeners
